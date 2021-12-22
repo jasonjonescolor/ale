@@ -68,6 +68,12 @@ function! ale#handlers#eslint#GetCwd(buffer) abort
     return strlen(l:modules_root) > strlen(l:sdks_root) ? l:modules_root : l:sdks_root
 endfunction
 
+function! ale#handlers#eslint#GetCwdBasedOnConfigFile(buffer) abort
+    return ale#path#Dirname(
+    \   ale#handlers#eslint#FindConfig(a:buffer)
+    \)
+endfunction
+
 function! ale#handlers#eslint#GetCommand(buffer) abort
     let l:executable = ale#handlers#eslint#GetExecutable(a:buffer)
 

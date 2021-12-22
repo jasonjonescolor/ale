@@ -4,7 +4,7 @@
 call ale#linter#Define('typescript', {
 \   'name': 'eslint',
 \   'executable': function('ale#handlers#eslint#GetExecutable'),
-\   'cwd': function('ale#handlers#eslint#GetCwd'),
+\   'cwd': function('ale#handlers#eslint#GetCwdBasedOnConfigFile'),
 \   'command': function('ale#handlers#eslint#GetCommand'),
 \   'callback': 'ale#handlers#eslint#HandleJSON',
 \})
