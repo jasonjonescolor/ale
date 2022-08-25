@@ -78,6 +78,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['dhall'],
 \       'description': 'Standard code formatter for the Dhall language and removing dead code',
 \   },
+\   'dune': {
+\       'function': 'ale#fixers#dune#Fix',
+\       'suggested_filetypes': ['dune'],
+\       'description': 'Fix dune files with dune format',
+\   },
 \   'fecs': {
 \       'function': 'ale#fixers#fecs#Fix',
 \       'suggested_filetypes': ['javascript', 'css', 'html'],
@@ -216,6 +221,11 @@ let s:default_registry = {
 \       'suggested_filetypes': ['swift'],
 \       'description': 'Apply SwiftFormat to a file.',
 \   },
+\   'syntax_tree': {
+\       'function': 'ale#fixers#syntax_tree#Fix',
+\       'suggested_filetypes': ['ruby'],
+\       'description': 'Fix ruby files with stree write',
+\   },
 \   'apple-swift-format': {
 \       'function': 'ale#fixers#appleswiftformat#Fix',
 \       'suggested_filetypes': ['swift'],
@@ -230,6 +240,11 @@ let s:default_registry = {
 \       'function': 'ale#fixers#php_cs_fixer#Fix',
 \       'suggested_filetypes': ['php'],
 \       'description': 'Fix PHP files with php-cs-fixer.',
+\   },
+\   'pint': {
+\       'function': 'ale#fixers#pint#Fix',
+\       'suggested_filetypes': ['php'],
+\       'description': 'Fix PHP files with Laravel Pint.',
 \   },
 \   'astyle': {
 \       'function': 'ale#fixers#astyle#Fix',
