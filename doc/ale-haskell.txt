@@ -123,8 +123,8 @@ g:ale_haskell_hlint_executable                 *g:ale_haskell_hlint_executable*
 
 g:ale_haskell_hlint_options                       g:ale_haskell_hlint_options
                                                   b:ale_haskell_hlint_options
-  Type: String
-  Default: ''
+  Type: |String|
+  Default: `''`
 
   This variable can be used to pass extra options to the underlying hlint
   executable.
@@ -217,10 +217,30 @@ g:ale_haskell_ormolu_executable               *g:ale_haskell_ormolu_executable*
 
 g:ale_haskell_ormolu_options                     *g:ale_haskell_ormolu_options*
                                                  *b:ale_haskell_ormolu_options*
-  Type: String
-  Default: ''
+  Type: |String|
+  Default: `''`
 
   This variable can be used to pass extra options to the underlying ormolu
+  executable.
+
+
+===============================================================================
+fourmolu                                                 *ale-haskell-fourmolu*
+
+g:ale_haskell_fourmolu_executable           *g:ale_haskell_fourmolu_executable*
+                                            *b:ale_haskell_fourmolu_executable*
+  Type: |String|
+  Default: `'fourmolu'`
+
+  This variable can be changed to use a different executable for fourmolu.
+
+
+g:ale_haskell_fourmolu_options                 *g:ale_haskell_fourmolu_options*
+                                               *b:ale_haskell_fourmolu_options*
+  Type: |String|
+  Default: `''`
+
+  This variable can be used to pass extra options to the underlying fourmolu
   executable.
 
 

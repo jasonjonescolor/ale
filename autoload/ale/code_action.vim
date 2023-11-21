@@ -216,7 +216,7 @@ function! s:UpdateCursor(cursor, start, end, offset) abort
             " to the end of the changes
             let l:cur_line = l:end_line + l:line_offset
             let l:cur_column = l:end_column + l:column_offset
-        " else is not necesary, it means modifications are happening
+        " else is not necessary, it means modifications are happening
         " after the cursor so no cursor updates need to be done
         endif
     endif
@@ -339,17 +339,7 @@ function! ale#code_action#GetCodeActions(options) abort
     silent! aunmenu PopUp.Refactor\.\.\.
 
     " Only display the menu items if there's an LSP server.
-    let l:has_lsp = 0
-
-    for l:linter in ale#linter#Get(&filetype)
-        if !empty(l:linter.lsp)
-            let l:has_lsp = 1
-
-            break
-        endif
-    endfor
-
-    if l:has_lsp
+    if len(ale#lsp_linter#GetEnabled(bufnr(''))) > 0
         if !empty(expand('<cword>'))
             silent! anoremenu <silent> PopUp.Rename :ALERename<CR>
         endif

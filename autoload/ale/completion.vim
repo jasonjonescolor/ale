@@ -130,6 +130,7 @@ let s:should_complete_map = {
 \   '<default>': '\v[a-zA-Z$_][a-zA-Z$_0-9]*$|\.$',
 \   'clojure': s:lisp_regex,
 \   'lisp': s:lisp_regex,
+\   'racket': '\k\+$',
 \   'typescript': '\v[a-zA-Z$_][a-zA-Z$_0-9]*$|\.$|''$|"$',
 \   'rust': '\v[a-zA-Z$_][a-zA-Z$_0-9]*$|\.$|::$',
 \   'cpp': '\v[a-zA-Z$_][a-zA-Z$_0-9]*$|\.$|::$|-\>$',
@@ -139,7 +140,7 @@ let s:should_complete_map = {
 " Regular expressions for finding the start column to replace with completion.
 let s:omni_start_map = {
 \   '<default>': '\v[a-zA-Z$_][a-zA-Z$_0-9]*$',
-\   'racket': '\k\+',
+\   'racket': '\k\+$',
 \}
 
 " A map of exact characters for triggering LSP completions. Do not forget to
@@ -823,6 +824,8 @@ endfunction
 " the current buffer. 1 will be returned if there's a potential source of
 " completion data ALE can use, and 0 will be returned otherwise.
 function! ale#completion#CanProvideCompletions() abort
+    " NOTE: We can report that ALE can provide completions to Deoplete from
+    " here, and we might ignore linters still below.
     for l:linter in ale#linter#Get(&filetype)
         if !empty(l:linter.lsp)
             return 1
@@ -889,11 +892,9 @@ function! ale#completion#GetCompletions(...) abort
 
     let l:started = 0
 
-    for l:linter in ale#linter#Get(&filetype)
-        if !empty(l:linter.lsp)
-            if ale#lsp_linter#StartLSP(l:buffer, l:linter, l:Callback)
-                let l:started = 1
-            endif
+    for l:linter in ale#lsp_linter#GetEnabled(l:buffer)
+        if ale#lsp_linter#StartLSP(l:buffer, l:linter, l:Callback)
+            let l:started = 1
         endif
     endfor
 

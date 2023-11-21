@@ -13,7 +13,7 @@ jobs:
   build_image:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build docker run image
         shell: bash
         env:
@@ -27,11 +27,11 @@ jobs:
       matrix:
         vim-version:
           - '--vim-80-only'
-          - '--vim-82-only'
-          - '--neovim-02-only'
-          - '--neovim-07-only'
+          - '--vim-90-only'
+          - '--neovim-06-only'
+          - '--neovim-08-only'
           - '--linters-only'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Run tests
         run: ./run-tests -v ${{ matrix.vim-version }}
